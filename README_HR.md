@@ -127,20 +127,3 @@
     <td width="50%" valign="top"><strong><a href="https://github.com/nikolay-kukin/nokia3310-atmega16">nokia3310-atmega16</a></strong><br>Embedded<br>Проект для дисплея Nokia 3310 / PCD8544 на ATmega16 с симуляцией работы.<br><strong>Стек:</strong> C, AVR, ATmega16, PCD8544, Proteus</td>
   </tr>
 </table>
-
-## Быстрая навигация для HR
-
-> Основной профиль: Java Backend  
-> Дополнительно: Go Backend  
-> Базы данных: PostgreSQL, ClickHouse  
-> Инфраструктура: Docker  
-> Интеграции: Kafka, REST, gRPC  
-> Контакты: Email и Telegram
-
-## Контакты
-
-<p>
-  Email: <a href="mailto:nikolay.kukin@icloud.com">nikolay.kukin@icloud.com</a><br>
-  Telegram: <a href="https://t.me/nikolaykukin">@nikolaykukin</a><br>
-  GitHub: <a href="https://github.com/nikolay-kukin">nikolay-kukin</a>
-</p>
