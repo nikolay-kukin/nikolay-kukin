@@ -1,0 +1,385 @@
+% !TeX program = xelatex
+%-------------------------
+% Одностраничное резюме Николая Кукина
+%-------------------------
+
+\documentclass[a4paper,10pt]{article}
+
+% ---------- ЯЗЫК И ШРИФТЫ ----------
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+
+\IfFontExistsTF{PT Sans}
+    {\setmainfont{PT Sans}}
+    {\setmainfont{TeX Gyre Heros}}
+
+% ---------- ОСНОВНЫЕ ПАКЕТЫ ----------
+\usepackage[
+    a4paper,
+    top=1.05cm,
+    bottom=1.05cm,
+    left=1.15cm,
+    right=1.15cm
+]{geometry}
+
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{lastpage}
+\usepackage{refcount}
+
+% ---------- ЦВЕТА ----------
+\definecolor{accent}{HTML}{1F4E79}
+\definecolor{textgray}{HTML}{444444}
+
+% ---------- ОБЩАЯ КОМПОНОВКА ----------
+\pagestyle{empty}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{0pt}
+\setlength{\emergencystretch}{1em}
+
+\raggedbottom
+\raggedright
+\urlstyle{same}
+
+\renewcommand{\baselinestretch}{0.98}
+
+% ---------- СПИСКИ ----------
+\setlist[itemize]{
+    leftmargin=15pt,
+    labelsep=5pt,
+    itemsep=1.2pt,
+    topsep=2pt,
+    parsep=0pt,
+    partopsep=0pt
+}
+
+% ---------- КОМАНДЫ ----------
+
+% Одинаковый заголовок для всех основных разделов:
+% 6 pt перед заголовком;
+% 2 pt между заголовком и линией;
+% 3.5 pt между линией и содержимым.
+\newcommand{\resumeSection}[1]{%
+    \par
+    \vspace{6pt}%
+    {\fontsize{13}{14}\selectfont
+     \bfseries
+     \color{accent}
+     #1\par}%
+    \vspace{-8pt}%
+    {\color{accent}\noindent\rule{\textwidth}{0.5pt}\par}%
+    \vspace{2pt}%
+}
+
+\newcommand{\jobSeparator}{%
+    \par
+    \vspace{-4pt}%
+    {\color{textgray!35}\noindent\rule{\textwidth}{0.4pt}\par}%
+    \vspace{4pt}%
+}
+
+\newcommand{\resumeItem}[1]{%
+    \item {\fontsize{9.5}{10.8}\selectfont #1}%
+}
+
+\newcommand{\resumeSubheading}[4]{%
+    \begin{tabularx}{\textwidth}{@{}Xr@{}}
+        {\fontsize{10.4}{11.4}\selectfont\bfseries #1}
+        &
+        {\fontsize{9.5}{10.5}\selectfont\bfseries #2}
+        \\[-0.5pt]
+
+        {\fontsize{9.5}{10.5}\selectfont\itshape #3}
+        &
+        {\fontsize{9.5}{10.5}\selectfont\itshape #4}
+    \end{tabularx}
+    \vspace{-2.5pt}
+}
+
+\newcommand{\resumeItemListStart}{%
+    \begin{itemize}
+}
+
+\newcommand{\resumeItemListEnd}{%
+    \end{itemize}
+    \vspace{-2pt}
+}
+
+\newcommand{\tech}[1]{%
+    \vspace{-0.5pt}
+    {\fontsize{9.25}{10.3}\selectfont
+    \textbf{Стек:} #1}%
+}
+
+\newcommand{\contactSeparator}{%
+    \hspace{4pt}
+    \textcolor{textgray}{\textbullet}
+    \hspace{4pt}
+}
+
+\newcommand{\visibleLink}[2]{%
+    \href{#1}{\textcolor{accent}{#2}}%
+}
+
+% ---------- ПРОВЕРКА ЧИСЛА СТРАНИЦ ----------
+% После второй компиляции предупреждает, если резюме заняло больше страницы.
+\AtEndDocument{%
+    \ifnum\getpagerefnumber{LastPage}>1
+        \PackageWarningNoLine{resume}{
+            Резюме занимает больше одной страницы
+        }
+    \fi
+}
+
+% -------------------------------------------
+%               ДОКУМЕНТ
+% -------------------------------------------
+
+\begin{document}
+
+% ---------- ШАПКА ----------
+\begin{center}
+    {\fontsize{25}{27}\selectfont\bfseries Николай Кукин}
+
+    \vspace{1pt}
+
+    {\fontsize{13.5}{14.5}\selectfont
+    \color{accent}\bfseries Backend-разработчик}
+
+    \vspace{3pt}
+
+    {\fontsize{10.8}{10.8}\selectfont
+        \href{tel:+79916045191}{+7 991 604-51-91}
+        \contactSeparator
+        \href{mailto:nikolay.kukin@icloud.com}
+        {nikolay.kukin@icloud.com}
+        \contactSeparator
+        \href{https://t.me/nikolaykukin}
+        {t.me/nikolaykukin}
+        \contactSeparator
+        \href{https://github.com/nikolay-kukin}
+        {github.com/nikolay-kukin}
+    }
+\end{center}
+
+\vspace{-3pt}
+
+% ---------- О СЕБЕ ----------
+\resumeSection{О себе}
+
+{\fontsize{9.6}{10.9}\selectfont
+Backend-разработчик с коммерческим опытом создания B2B-систем и внутренних
+производственных сервисов. Основной стек — Java, Spring Boot и PostgreSQL;
+также разрабатываю backend на Go и сквозные сценарии с Flutter-клиентами.
+Участвую в проектировании архитектуры, API, бизнес-логики и моделей данных.
+Использую ИИ-инструменты для анализа и разработки.
+}
+\vspace{-10pt}
+% ---------- ОПЫТ ----------
+\resumeSection{Опыт работы}
+
+% ---------- ЛОГИСТИЧЕСКИЙ СТАРТАП ----------
+\resumeSubheading
+    {Логистический стартап}
+    {май 2026 — настоящее время}
+    {Fullstack-разработчик}
+    {Москва}
+
+{\fontsize{9.5}{10.7}\selectfont
+Внутренняя система управления производственными заявками, складскими
+и логистическими процессами.
+}
+
+\resumeItemListStart
+    \resumeItem{
+        Разрабатываю REST API и бизнес-логику на Go для процессов отгрузки,
+        возвратов, закупок и движения транспорта; реализую сквозные изменения
+        в backend, мобильном приложении и desktop-dashboard.
+    }
+
+    \resumeItem{
+        Реализовал идемпотентную обработку транспортных операций,
+        серверное хранение статусов автомобилей и корректную доставку
+        realtime-уведомлений.
+    }
+
+    \resumeItem{
+        Участвовал в нормализации legacy-базы: разделении данных по схемам,
+        создании справочников и устранении дублирующей логики.
+    }
+
+    \resumeItem{
+        Разработал редактор BPMN-процессов с версионированием и интеграцией
+        с Go API:
+        \visibleLink
+        {https://github.com/nikolay-kukin/redactor-bpmn}
+        {github.com/nikolay-kukin/redactor-bpmn}.
+    }
+\resumeItemListEnd
+
+\vspace{2pt}
+
+\tech{Go, PostgreSQL, REST API, Docker, Flutter, WebSocket}
+
+\jobSeparator
+
+% ---------- ИСТОК ----------
+\resumeSubheading
+    {НПП «Исток» им. Шокина}
+    {август 2024 — настоящее время}
+    {Backend-разработчик}
+    {Москва}
+
+{\fontsize{9.5}{10.7}\selectfont
+Микросервисные B2B-системы для работы с товарными каталогами, заказами,
+технической документацией и инженерными проектами.
+}
+
+\resumeItemListStart
+    \resumeItem{
+        Спроектировал систему хранения файлов на базе MinIO и PostgreSQL:
+        иерархия, версионирование, единый API и работа с техническими
+        документами и изображениями.
+    }
+
+    \resumeItem{
+        Разработал координатор асинхронной ИИ-обработки документов:
+        разбиение на страницы, параллельные запросы к ИИ-сервису
+        и поэтапное сохранение результатов.
+    }
+
+    \resumeItem{
+        Реализовал MVP аналитического модуля: Kafka, ClickHouse, REST API
+        и визуализация продуктовых метрик:
+        \visibleLink
+        {https://github.com/nikolay-kukin/analytic-module}
+        {github.com/nikolay-kukin/analytic-module}.
+    }
+
+    \resumeItem{
+        Разработал и нагрузочно протестировал стенд сравнения HTTP/2
+        на Spring WebFlux и gRPC:
+        \visibleLink
+        {https://github.com/nikolay-kukin/grpc-vs-http2}
+        {github.com/nikolay-kukin/grpc-vs-http2}.
+    }
+\resumeItemListEnd
+
+\vspace{2pt}
+
+\tech{
+    Java 17, Spring Boot MVC/WebFlux, PostgreSQL, ClickHouse,
+    MinIO, Kafka, Docker, Swagger
+}
+
+\jobSeparator
+
+% ---------- ВЕБ-КОНСТРУКТОР ----------
+\resumeSubheading
+    {Индивидуальный проект «Веб-конструктор металлоконструкций»}
+    {март 2024 — август 2024}
+    {Fullstack-разработчик}
+    {Москва}
+
+{\fontsize{9.5}{10.7}\selectfont
+Веб-приложение для расчёта конструкций и автоматического формирования
+технико-коммерческих предложений:
+\visibleLink
+{https://github.com/nikolay-kukin/chgzabor}
+{github.com/nikolay-kukin/chgzabor}.
+}
+
+\resumeItemListStart
+    \resumeItem{
+        Спроектировал микросервисную архитектуру и расширяемый модуль расчёта
+        с добавлением новых типов изделий без изменения существующей логики.
+    }
+
+    \resumeItem{
+        Разработал генератор PDF-документов на Apache PDFBox и браузерный
+        интерфейс; сократил подготовку предложения с нескольких дней
+        до нескольких минут.
+    }
+\resumeItemListEnd
+
+\vspace{2pt}
+
+\tech{
+    Java 17, Spring Boot, Apache PDFBox, Docker,
+    HTML, CSS, JavaScript
+}
+
+% ---------- ОБРАЗОВАНИЕ ----------
+\resumeSection{Образование}
+
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+    {\fontsize{10}{11}\selectfont\bfseries
+    РТУ МИРЭА — Информатика и вычислительная техника}
+    &
+    {\fontsize{9.5}{10.5}\selectfont\bfseries 2022–2026}
+    \\[-0.5pt]
+
+    \multicolumn{2}{@{}l@{}}{
+        \fontsize{9.3}{10.4}\selectfont
+        Бакалавриат с отличием. Автоматизация и цифровизация производств
+        радиоэлектронной промышленности
+    }
+\end{tabularx}
+
+\vspace{3pt}
+
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+    {\fontsize{9.3}{10.4}\selectfont
+    \textbf{Профессиональная переподготовка:}
+    Менеджер по информационным технологиям}
+    &
+    {\fontsize{9.3}{10.4}\selectfont\bfseries 2026}
+    \\[0.5pt]
+
+    {\fontsize{9.3}{10.4}\selectfont
+    \textbf{Профессиональная переподготовка:}
+    Технологии DevOps}
+    &
+    {\fontsize{9.3}{10.4}\selectfont\bfseries 2026}
+\end{tabularx}
+
+% ---------- НАВЫКИ ----------
+\resumeSection{Технические навыки}
+
+{\fontsize{9.3}{10.5}\selectfont
+\textbf{Основные:}
+Java 17, Spring Boot MVC/WebFlux, PostgreSQL, MinIO, Docker, Swagger
+
+\vspace{1.5pt}
+
+\textbf{Дополнительные:}
+Go, Apache Kafka, ClickHouse, Redis, REST API, WebSocket, Apache PDFBox
+
+\vspace{1pt}
+
+\textbf{Базовый уровень:}
+React, JavaScript, HTML, CSS, Dart, Flutter
+}
+
+% ---------- ДОПОЛНИТЕЛЬНО ----------
+\resumeSection{Дополнительно}
+
+{\fontsize{9.2}{10.4}\selectfont
+Проходил дополнительное обучение по Java, тестированию, алгоритмам,
+ИИ и промтингу. Имею сертификаты по профильным направлениям, а также дипломы
+о высшем образовании и профессиональной переподготовке. Все подтверждающие
+документы доступны по ссылке:
+\visibleLink
+{https://disk.yandex.ru/d/uQvg0pOUF47oiA}
+{disk.yandex.ru/d/uQvg0pOUF47oiA}.
+}
+
+\end{document}

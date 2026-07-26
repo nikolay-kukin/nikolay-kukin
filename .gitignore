@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+
+# Временные файлы редакторов
+*.swp
+*.swo
+*~
