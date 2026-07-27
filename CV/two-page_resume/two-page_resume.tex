@@ -5,7 +5,10 @@
 
 \documentclass[a4paper,10pt]{article}
 
-% ---------- ЯЗЫК И ШРИФТЫ ----------
+% =========================================================
+% ЯЗЫК И ШРИФТ
+% =========================================================
+
 \usepackage{fontspec}
 \usepackage{polyglossia}
 
@@ -16,7 +19,10 @@
     {\setmainfont{PT Sans}}
     {\setmainfont{TeX Gyre Heros}}
 
-% ---------- ОСНОВНЫЕ ПАКЕТЫ ----------
+% =========================================================
+% ПАКЕТЫ
+% =========================================================
+
 \usepackage[
     a4paper,
     top=1.4cm,
@@ -34,21 +40,131 @@
 \usepackage{fancyhdr}
 \usepackage{array}
 
-% ---------- ЦВЕТА ----------
+% =========================================================
+% ЦВЕТА
+% =========================================================
+
 \definecolor{accent}{HTML}{1F4E79}
 \definecolor{textgray}{HTML}{4F4F4F}
 \definecolor{lightgray}{HTML}{D7DCE2}
 
-% ---------- ОБЩАЯ КОМПОНОВКА ----------
+% =========================================================
+% ЦЕНТРАЛЬНАЯ НАСТРОЙКА ШРИФТОВ
+% =========================================================
+
+% ---------- ШАПКА ----------
+
+\newcommand{\fontName}{%
+    \fontsize{27.5}{30.5}\selectfont
+}
+
+\newcommand{\fontPosition}{%
+    \fontsize{15.3}{18}\selectfont
+}
+
+\newcommand{\fontContacts}{%
+    \fontsize{10.8}{12.8}\selectfont
+}
+
+\newcommand{\fontFooter}{%
+    \fontsize{8.7}{10.2}\selectfont
+}
+
+% ---------- ЗАГОЛОВКИ ----------
+
+\newcommand{\fontSection}{%
+    \fontsize{14.5}{16.8}\selectfont
+}
+
+\newcommand{\fontEducationGroup}{%
+    \fontsize{11.4}{13.2}\selectfont
+}
+
+% ---------- ПЕРВАЯ СТРАНИЦА: ОПЫТ ----------
+
+\newcommand{\fontJobTitle}{%
+    \fontsize{11.2}{12.8}\selectfont
+}
+
+\newcommand{\fontJobDate}{%
+    \fontsize{9.9}{11.4}\selectfont
+}
+
+\newcommand{\fontJobMeta}{%
+    \fontsize{10}{11.4}\selectfont
+}
+
+\newcommand{\fontJobDescription}{%
+    \fontsize{10}{11.7}\selectfont
+}
+
+\newcommand{\fontResumeItem}{%
+    \fontsize{9.9}{11.55}\selectfont
+}
+
+\newcommand{\fontTech}{%
+    \fontsize{9.7}{11.2}\selectfont
+}
+
+% ---------- ВТОРАЯ СТРАНИЦА ----------
+
+\newcommand{\fontBody}{%
+    \fontsize{10.6}{12.7}\selectfont
+}
+
+\newcommand{\fontEducationBody}{%
+    \fontsize{10.3}{12.1}\selectfont
+}
+
+\newcommand{\fontEducationTitle}{%
+    \fontsize{10.6}{12.3}\selectfont
+}
+
+\newcommand{\fontEducationDate}{%
+    \fontsize{10}{11.6}\selectfont
+}
+
+\newcommand{\fontDegree}{%
+    \fontsize{10.6}{12.3}\selectfont
+}
+
+% =========================================================
+% ЦЕНТРАЛЬНАЯ НАСТРОЙКА ОТСТУПОВ
+% =========================================================
+
+\newcommand{\spaceBeforeSection}{9pt}
+
+\newcommand{\spaceSectionToLine}{-4.5pt}
+
+\newcommand{\spaceAfterSectionLine}{5.5pt}
+
+\newcommand{\spaceDescriptionToList}{1.5pt}
+
+\newcommand{\spaceBetweenItems}{2.2pt}
+
+\newcommand{\spaceJobSeparator}{4.5pt}
+
+\newcommand{\spaceEducationSeparator}{6.5pt}
+
+\newcommand{\spaceBetweenSkillGroups}{7pt}
+
+\newcommand{\spaceBetweenContacts}{3.5pt}
+
+% =========================================================
+% ОБЩАЯ КОМПОНОВКА
+% =========================================================
+
 \pagestyle{fancy}
 \fancyhf{}
+
 \fancyfoot[C]{%
-    \fontsize{8.5}{9.5}\selectfont
+    \fontFooter
     \color{textgray}
     Николай Кукин
     \hspace{5pt}\textbullet\hspace{5pt}
     \thepage
 }
+
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
@@ -61,48 +177,127 @@
 \raggedright
 \urlstyle{same}
 
-% ---------- СПИСКИ ----------
+% =========================================================
+% СПИСКИ
+%
+% topsep=0pt отключает автоматический отступ списка сверху.
+% Теперь расстояние до списка задаёт только
+% \spaceDescriptionToList в команде \jobDescription.
+% =========================================================
+
 \setlist[itemize]{
     leftmargin=17pt,
     labelsep=6pt,
-    itemsep=2.5pt,
-    topsep=3pt,
+    itemsep=\spaceBetweenItems,
+    topsep=0pt,
     parsep=0pt,
     partopsep=0pt
 }
 
-% ---------- КОМАНДЫ ----------
+% =========================================================
+% КОМАНДЫ
+% =========================================================
 
+% ---------- Основной заголовок раздела ----------
 \newcommand{\resumeSection}[1]{%
     \par
-    \vspace{9pt}%
-    {\fontsize{14}{16}\selectfont
-     \bfseries
-     \color{accent}
-     #1\par}%
-    \vspace{1pt}%
-    {\color{accent}\noindent\rule{\textwidth}{0.7pt}\par}%
-    \vspace{5pt}%
+    \vspace{\spaceBeforeSection}%
+    {%
+        \fontSection
+        \bfseries
+        \color{accent}
+        #1\par
+    }%
+    \vspace{\spaceSectionToLine}%
+    {%
+        \color{accent}
+        \noindent
+        \rule{\textwidth}{0.7pt}\par
+    }%
+    \vspace{\spaceAfterSectionLine}%
 }
 
+% ---------- Подзаголовок внутри образования ----------
+\newcommand{\educationGroup}[1]{%
+    {%
+        \fontEducationGroup
+        \bfseries
+        \color{accent}
+        #1\par
+    }%
+    \vspace{4pt}%
+}
+
+% ---------- Разделитель между блоками образования ----------
+\newcommand{\educationSeparator}{%
+    \par
+    \vspace{\spaceEducationSeparator}%
+    {%
+        \color{lightgray}
+        \noindent
+        \rule{\textwidth}{0.5pt}\par
+    }%
+    \vspace{\spaceEducationSeparator}%
+}
+
+% ---------- Компания, период, должность и город ----------
 \newcommand{\resumeSubheading}[4]{%
     \begin{tabularx}{\textwidth}{@{}Xr@{}}
-        {\fontsize{11}{12.5}\selectfont\bfseries #1}
+
+        {%
+            \fontJobTitle
+            \bfseries
+            #1
+        }
         &
-        {\fontsize{9.7}{11}\selectfont\bfseries #2}
+        {%
+            \fontJobDate
+            \bfseries
+            #2
+        }
+
         \\[0.5pt]
 
-        {\fontsize{9.8}{11}\selectfont\itshape #3}
+        {%
+            \fontJobMeta
+            \itshape
+            #3
+        }
         &
-        {\fontsize{9.8}{11}\selectfont\itshape #4}
+        {%
+            \fontJobMeta
+            \itshape
+            #4
+        }
+
     \end{tabularx}
-    \vspace{2pt}
+
+    % Расстояние после должности и города до описания проекта.
+    \vspace{2pt}%
 }
 
+% ---------- Описание проекта перед списком ----------
+%
+% Эта команда устраняет разное расстояние до списков.
+% После текста всегда создаётся обычный абзац и ровно один
+% контролируемый отступ \spaceDescriptionToList.
+\newcommand{\jobDescription}[1]{%
+    {%
+        \fontJobDescription
+        #1\par
+    }%
+    \vspace{\spaceDescriptionToList}%
+}
+
+% ---------- Один пункт опыта ----------
 \newcommand{\resumeItem}[1]{%
-    \item {\fontsize{9.7}{11.3}\selectfont #1}%
+    \item {%
+        \fontResumeItem
+        #1
+    }%
 }
 
+% ---------- Начало и конец списка ----------
 \newcommand{\resumeItemListStart}{%
     \begin{itemize}
 }
@@ -111,36 +306,45 @@
     \end{itemize}
 }
 
+% ---------- Стек ----------
 \newcommand{\tech}[1]{%
-    \vspace{1pt}
-    {\fontsize{9.5}{10.8}\selectfont
-    \textbf{Стек:} #1}%
+    \vspace{1pt}%
+    {%
+        \fontTech
+        \textbf{Стек:} #1
+    }%
 }
 
+% ---------- Разделитель между местами работы ----------
 \newcommand{\jobSeparator}{%
     \par
-    \vspace{5pt}%
-    {\color{lightgray}\noindent\rule{\textwidth}{0.5pt}\par}%
-    \vspace{5pt}%
+    \vspace{\spaceJobSeparator}%
+    {%
+        \color{lightgray}
+        \noindent
+        \rule{\textwidth}{0.5pt}\par
+    }%
+    \vspace{\spaceJobSeparator}%
 }
 
+% ---------- Кликабельная синяя ссылка ----------
 \newcommand{\visibleLink}[2]{%
     \href{#1}{\textcolor{accent}{#2}}%
 }
 
-% -------------------------------------------
-%               ДОКУМЕНТ
-% -------------------------------------------
+% =========================================================
+% ДОКУМЕНТ
+% =========================================================
 
 \begin{document}
 
 % =========================================================
-% ШАПКА С УВЕЛИЧЕННОЙ ФОТОГРАФИЕЙ
+% ШАПКА
 % =========================================================
 
 \begin{tabularx}{\textwidth}{@{}m{4.35cm}@{\hspace{0.8cm}}X@{}}
 
-    % ---------- ФОТО ----------
+    % ---------- Фотография ----------
     \IfFileExists{photo.jpg}{
         \includegraphics[
             width=4.15cm,
@@ -161,38 +365,46 @@
 
     &
 
-    % ---------- ИНФОРМАЦИЯ СПРАВА ----------
+    % ---------- Информация справа ----------
     \begin{minipage}[c]{\linewidth}
 
-        {\fontsize{27}{30}\selectfont
-        \bfseries Николай Кукин}
+        {%
+            \fontName
+            \bfseries
+            Николай Кукин
+        }
 
         \vspace{4pt}
 
-        {\fontsize{15}{17}\selectfont
-        \color{accent}
-        \bfseries Backend-разработчик}
+        {%
+            \fontPosition
+            \color{accent}
+            \bfseries
+            Backend-разработчик
+        }
 
         \vspace{12pt}
 
-        {\fontsize{10.5}{12.3}\selectfont
-        \href{tel:+79916045191}
-        {+7 991 604-51-91}
+        {%
+            \fontContacts
 
-        \vspace{3.5pt}
+            \href{tel:+79916045191}
+            {+7 991 604-51-91}
 
-        \href{mailto:nikolay.kukin@icloud.com}
-        {nikolay.kukin@icloud.com}
+            \vspace{3.5pt}
 
-        \vspace{3.5pt}
+            \href{mailto:nikolay.kukin@icloud.com}
+            {nikolay.kukin@icloud.com}
 
-        \href{https://t.me/nikolaykukin}
-        {t.me/nikolaykukin}
+            \vspace{3.5pt}
 
-        \vspace{3.5pt}
+            \href{https://t.me/nikolaykukin}
+            {t.me/nikolaykukin}
 
-        \href{https://github.com/nikolay-kukin}
-        {github.com/nikolay-kukin}
+            \vspace{3.5pt}
+
+            \href{https://github.com/nikolay-kukin}
+            {github.com/nikolay-kukin}
         }
 
     \end{minipage}
@@ -202,21 +414,24 @@
 \vspace{3pt}
 
 % =========================================================
-% ПЕРВАЯ СТРАНИЦА — ТОЛЬКО ОПЫТ
+% ПЕРВАЯ СТРАНИЦА — ОПЫТ
 % =========================================================
 
 \resumeSection{Опыт работы}
 
-% ---------- ЛОГИСТИЧЕСКИЙ СТАРТАП ----------
+% ---------------------------------------------------------
+% ЛОГИСТИЧЕСКИЙ СТАРТАП
+% ---------------------------------------------------------
+
 \resumeSubheading
     {Логистический стартап}
     {май 2026 — настоящее время}
     {Fullstack-разработчик}
     {Москва}
 
-{\fontsize{9.8}{11.4}\selectfont
-Разработка внутренней системы управления производственными заявками,
-складскими и логистическими процессами.
+\jobDescription{
+    Разработка внутренней системы управления производственными заявками,
+    складскими и логистическими процессами.
 }
 
 \resumeItemListStart
@@ -256,16 +471,19 @@
 
 \jobSeparator
 
-% ---------- ИСТОК ----------
+% ---------------------------------------------------------
+% НПП «ИСТОК»
+% ---------------------------------------------------------
+
 \resumeSubheading
     {НПП «Исток» им. Шокина}
     {август 2024 — настоящее время}
     {Backend-разработчик}
     {Москва}
 
-{\fontsize{9.8}{11.4}\selectfont
-Разработка микросервисных B2B-систем на Java для работы с товарными
-каталогами, заказами, технической документацией и инженерными проектами.
+\jobDescription{
+    Разработка микросервисных B2B-систем на Java для работы с товарными
+    каталогами, заказами, технической документацией и инженерными проектами.
 }
 
 \resumeItemListStart
@@ -314,19 +532,22 @@
 
 \jobSeparator
 
-% ---------- ВЕБ-КОНСТРУКТОР ----------
+% ---------------------------------------------------------
+% ВЕБ-КОНСТРУКТОР
+% ---------------------------------------------------------
+
 \resumeSubheading
     {Индивидуальный проект «Веб-конструктор металлоконструкций»}
     {март 2024 — август 2024}
     {Fullstack-разработчик}
     {Москва}
 
-{\fontsize{9.8}{11.4}\selectfont
-Разработал веб-приложение для автоматизации подготовки
-технико-коммерческих предложений:
-\visibleLink
-{https://github.com/nikolay-kukin/chgzabor}
-{github.com/nikolay-kukin/chgzabor}.
+\jobDescription{
+    Разработал веб-приложение для автоматизации подготовки
+    технико-коммерческих предложений:
+    \visibleLink
+    {https://github.com/nikolay-kukin/chgzabor}
+    {github.com/nikolay-kukin/chgzabor}.
 }
 
 \resumeItemListStart
@@ -364,96 +585,177 @@
 
 \newpage
 
-% ---------- О СЕБЕ ----------
-\resumeSection{О себе}
+% =========================================================
+% ОБРАЗОВАНИЕ
+% =========================================================
 
-{\fontsize{10}{11.8}\selectfont
-Backend-разработчик с коммерческим опытом создания B2B-систем,
-внутренних производственных сервисов и микросервисных приложений.
-Основной стек — Java, Spring Boot и PostgreSQL; также разрабатываю
-backend на Go и сквозные сценарии с Flutter-клиентами. Участвую
-в проектировании архитектуры, API, бизнес-логики и моделей данных.
-Использую ИИ-инструменты для анализа, разработки и автоматизации
-рутинных задач.
-}
-
-% ---------- ОБРАЗОВАНИЕ ----------
 \resumeSection{Образование}
+
+% ---------- Высшее образование ----------
+\educationGroup{Высшее образование}
 
 \begin{tabularx}{\textwidth}{@{}Xr@{}}
 
-    {\fontsize{11}{12.5}\selectfont\bfseries
-    РТУ МИРЭА}
+    {%
+        \fontEducationGroup
+        \bfseries
+        РТУ МИРЭА
+    }
 
     &
 
-    {\fontsize{9.8}{11}\selectfont\bfseries
-    2022–2026}
-
-    \\[2pt]
-
-    \multicolumn{2}{@{}l@{}}{
-        \fontsize{10}{11.6}\selectfont
-        \textbf{Бакалавриат с отличием —
-        «Информатика и вычислительная техника»}
+    {%
+        \fontJobMeta
+        \bfseries
+        2022–2026
     }
 
-    \\[2pt]
+    \\[1.5pt]
 
     \multicolumn{2}{@{}p{\textwidth}@{}}{
-        \fontsize{9.8}{11.4}\selectfont
+        \fontsize{10}{11.5}\selectfont
+        \textbf{
+            Бакалавриат с отличием —
+            «Информатика и вычислительная техника»
+        }
+    }
+
+    \\[1.5pt]
+
+    \multicolumn{2}{@{}p{\textwidth}@{}}{
+        \fontEducationBody
         Автоматизация и цифровизация производств
         радиоэлектронной промышленности
     }
 
 \end{tabularx}
 
-\vspace{8pt}
+\educationSeparator
+
+% ---------- Профессиональная переподготовка ----------
+\educationGroup{Профессиональная переподготовка}
 
 \begin{tabularx}{\textwidth}{@{}Xr@{}}
 
-    {\fontsize{10.5}{12}\selectfont\bfseries
-    Профессиональная переподготовка}
+    {%
+        \fontsize{10}{11.4}\selectfont
+        \bfseries
+        Менеджер по информационным технологиям
+    }
 
     &
 
-    {\fontsize{9.8}{11}\selectfont\bfseries
-    2026}
+    {%
+        \fontEducationDate
+        \bfseries
+        2026
+    }
 
-    \\[2pt]
+    \\[1pt]
 
-    \multicolumn{2}{@{}l@{}}{
-        \fontsize{9.8}{11.4}\selectfont
-        РТУ МИРЭА — Менеджер по информационным технологиям
+    \multicolumn{2}{@{}p{\textwidth}@{}}{
+        \fontsize{9.6}{11}\selectfont
+        РТУ МИРЭА
+    }
+
+    \\[5pt]
+
+    {%
+        \fontsize{10}{11.4}\selectfont
+        \bfseries
+        Технологии DevOps
+    }
+
+    &
+
+    {%
+        \fontEducationDate
+        \bfseries
+        2026
+    }
+
+    \\[1pt]
+
+    \multicolumn{2}{@{}p{\textwidth}@{}}{
+        \fontsize{9.6}{11}\selectfont
+        РТУ МИРЭА
     }
 
 \end{tabularx}
 
-\vspace{7pt}
+\educationSeparator
+
+% ---------- Сертификаты ----------
+\educationGroup{Сертификаты и дополнительное обучение}
 
 \begin{tabularx}{\textwidth}{@{}Xr@{}}
 
-    {\fontsize{10.5}{12}\selectfont\bfseries
-    Профессиональная переподготовка}
-
+    {\fontEducationBody
+    Яндекс — интенсив Agents Week от Школы анализа данных}
     &
+    {\fontEducationDate\bfseries 2026}
 
-    {\fontsize{9.8}{11}\selectfont\bfseries
-    2026}
+    \\[4pt]
 
-    \\[2pt]
+    {\fontEducationBody
+    Яндекс — ИИ и промтинг для студенческих проектов}
+    &
+    {\fontEducationDate\bfseries 2026}
 
-    \multicolumn{2}{@{}l@{}}{
-        \fontsize{9.8}{11.4}\selectfont
-        РТУ МИРЭА — Технологии DevOps
-    }
+    \\[4pt]
+
+    {\fontEducationBody
+    Яндекс — тренировки «От алгоритмов до стажировки»}
+    &
+    {\fontEducationDate\bfseries 2026}
+
+    \\[4pt]
+
+    {\fontEducationBody
+    РТУ МИРЭА — докладчик студенческой конференции}
+    &
+    {\fontEducationDate\bfseries 2025}
+
+    \\[4pt]
+
+    {\fontEducationBody
+    РТУ МИРЭА — основы тестирования информационных систем}
+    &
+    {\fontEducationDate\bfseries 2025}
+
+    \\[4pt]
+
+    {\fontEducationBody
+    Яндекс — тренировки, забег по алгоритмам}
+    &
+    {\fontEducationDate\bfseries 2025}
+
+    \\[4pt]
+
+    {\fontEducationBody
+    РТУ МИРЭА — создание прикладных программ на Java}
+    &
+    {\fontEducationDate\bfseries 2024}
 
 \end{tabularx}
 
-% ---------- ТЕХНИЧЕСКИЕ НАВЫКИ ----------
+\vspace{6pt}
+
+{%
+    \fontEducationBody
+    \textbf{Подтверждающие документы:}
+    \visibleLink
+    {https://disk.yandex.ru/d/uQvg0pOUF47oiA}
+    {disk.yandex.ru/d/uQvg0pOUF47oiA}
+}
+
+% =========================================================
+% ТЕХНИЧЕСКИЕ НАВЫКИ
+% =========================================================
+
 \resumeSection{Технические навыки}
 
-{\fontsize{10}{11.8}\selectfont
+{\fontBody
 
 \textbf{\color{accent}Основные}
 
@@ -479,37 +781,34 @@ React, JavaScript, HTML, CSS, Dart, Flutter
 
 }
 
-% ---------- ДОПОЛНИТЕЛЬНОЕ ОБУЧЕНИЕ ----------
-\resumeSection{Дополнительное обучение}
+% =========================================================
+% О СЕБЕ
+% =========================================================
 
-{\fontsize{10}{11.8}\selectfont
-Проходил дополнительное обучение по Java, тестированию информационных
-систем, алгоритмам, ИИ, промтингу и разработке AI-агентов. Участвовал
-в интенсивах и тренировках Яндекса, а также выступал с докладом
-на студенческой конференции РТУ МИРЭА.
+\resumeSection{О себе}
+
+{\fontBody
+Backend-разработчик с коммерческим опытом создания B2B-систем,
+внутренних производственных сервисов и микросервисных приложений.
+Основной стек — Java, Spring Boot и PostgreSQL; также разрабатываю
+backend на Go и сквозные сценарии с Flutter-клиентами. Участвую
+в проектировании архитектуры, API, бизнес-логики и моделей данных.
+Использую ИИ-инструменты для анализа, разработки и автоматизации
+рутинных задач.
 }
 
-% ---------- ЯЗЫКИ ----------
+% =========================================================
+% ЯЗЫКИ
+% =========================================================
+
 \resumeSection{Языки}
 
-{\fontsize{10}{11.8}\selectfont
+{\fontBody
 \textbf{Русский} — родной
 \hspace{15pt}
 \textbullet
 \hspace{15pt}
 \textbf{Английский} — A1, начальный уровень
-}
-
-% ---------- СЕРТИФИКАТЫ ----------
-\resumeSection{Сертификаты и дипломы}
-
-{\fontsize{10}{11.8}\selectfont
-Имею сертификаты по Java, тестированию, алгоритмам и применению
-ИИ-инструментов, а также дипломы о высшем образовании и двух программах
-профессиональной переподготовки. Все подтверждающие документы доступны
-по ссылке: \visibleLink
-{https://disk.yandex.ru/d/uQvg0pOUF47oiA}
-{disk.yandex.ru/d/uQvg0pOUF47oiA}
 }
 
 \end{document}
